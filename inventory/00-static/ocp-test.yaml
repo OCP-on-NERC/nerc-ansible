@@ -15,17 +15,17 @@ all:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
                 ctl-1.nerc-ocp-test.rc.fas.harvard.edu:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
                 ctl-2.nerc-ocp-test.rc.fas.harvard.edu:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
             nerc_ocp_test_workers:
               vars:
                 node_role: openshift_worker
@@ -35,49 +35,49 @@ all:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
                 wrk-1.nerc-ocp-test.rc.fas.harvard.edu:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
                 wrk-2.nerc-ocp-test.rc.fas.harvard.edu:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
                 wrk-3.nerc-ocp-test.rc.fas.harvard.edu:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
                 wrk-4.nerc-ocp-test.rc.fas.harvard.edu:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
                 wrk-5.nerc-ocp-test.rc.fas.harvard.edu:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
                 wrk-6.nerc-ocp-test.rc.fas.harvard.edu:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
                 wrk-7.nerc-ocp-test.rc.fas.harvard.edu:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
                 wrk-8.nerc-ocp-test.rc.fas.harvard.edu:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:
                 wrk-9.nerc-ocp-test.rc.fas.harvard.edu:
                   row: 07
                   pod: B
                   cage: 19
-                  unitnumber: 
+                  unitnumber:

@@ -15,17 +15,17 @@ all:
                   row: 07
                   pod: C
                   cage: 03
-                  unitnumber: 
+                  unitnumber: 11-12
                 ctl-1.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 07
                   pod: C
                   cage: 03
-                  unitnumber: 
+                  unitnumber: 11-12
                 ctl-2.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 07
                   pod: C
                   cage: 03
-                  unitnumber: 
+                  unitnumber: 11-12
             nerc_ocp_prod_workers:
               vars:
                 node_role: openshift_worker
@@ -35,439 +35,439 @@ all:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 07-08
                 wrk-1.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 07-08
                 wrk-2.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 07-08
                 wrk-3.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 07-08
                 wrk-4.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 07-08
                 wrk-5.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 07-08
                 wrk-6.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 07-08
                 wrk-7.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 07-08
                 wrk-8.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 09-10
                 wrk-9.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 09-10
                 wrk-10.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 09-10
                 wrk-11.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 09-10
                 wrk-12.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 09-10
                 wrk-13.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 09-10
                 wrk-14.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 09-10
                 wrk-15.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 09-10
                 wrk-16.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 11-12
                 wrk-17.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 11-12
                 wrk-18.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 11-12
                 wrk-19.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 11-12
                 wrk-20.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 11-12
                 wrk-21.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 11-12
                 wrk-22.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 11-12
                 wrk-23.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 11-12
                 wrk-24.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 13-14
                 wrk-25.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 13-14
                 wrk-26.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 13-14
                 wrk-27.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 13-14
                 wrk-28.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 13-14
                 wrk-29.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 13-14
                 wrk-30.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 13-14
                 wrk-31.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 13-14
                 wrk-32.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 15-16
                 wrk-33.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 15-16
                 wrk-34.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 15-16
                 wrk-35.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 15-16
                 wrk-36.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 15-16
                 wrk-37.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 15-16
                 wrk-38.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 15-16
                 wrk-39.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 15-16
                 wrk-40.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 17-18
                 wrk-41.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 17-18
                 wrk-42.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 17-18
                 wrk-43.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 17-18
                 wrk-44.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 17-18
                 wrk-45.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 17-18
                 wrk-46.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 17-18
                 wrk-47.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 17-18
                 wrk-48.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 19-20
                 wrk-49.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 19-20
                 wrk-50.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 19-20
                 wrk-51.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 19-20
                 wrk-52.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 19-20
                 wrk-53.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 19-20
                 wrk-54.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 19-20
                 wrk-55.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 19-20
                 wrk-56.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 21-22
                 wrk-57.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 21-22
                 wrk-58.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 21-22
                 wrk-59.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 21-22
                 wrk-60.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 21-22
                 wrk-61.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 21-22
                 wrk-62.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 21-22
                 wrk-63.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 21-22
                 wrk-64.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 23-24
                 wrk-65.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 23-24
                 wrk-66.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 23-24
                 wrk-67.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 23-24
                 wrk-68.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 23-24
                 wrk-69.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 23-24
                 wrk-70.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 23-24
                 wrk-71.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 23-24
                 wrk-72.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 25-26
                 wrk-73.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 25-26
                 wrk-74.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 25-26
                 wrk-75.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 25-26
                 wrk-76.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 25-26
                 wrk-77.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 25-26
                 wrk-78.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 25-26
                 wrk-79.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 25-26
                 wrk-80.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 27-28
                 wrk-81.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 27-28
                 wrk-82.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 27-28
                 wrk-83.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 27-28
                 wrk-84.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 27-28
                 wrk-85.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 27-28
                 wrk-86.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 27-28
                 wrk-87.nerc-ocp-prod.rc.fas.harvard.edu:
                   row: 01
                   pod: A
                   cage: 08
-                  unitnumber: 
+                  unitnumber: 27-28

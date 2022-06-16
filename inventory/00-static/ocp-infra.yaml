@@ -15,14 +15,14 @@ all:
                   row: 07
                   pod: C
                   cage: 03
-                  unitnumber: 
+                  unitnumber: 09-10
                 ctl-1.nerc-ocp-infra.rc.fas.harvard.edu:
                   row: 07
                   pod: C
                   cage: 03
-                  unitnumber: 
+                  unitnumber: 09-10
                 ctl-2.nerc-ocp-infra.rc.fas.harvard.edu:
                   row: 07
                   pod: C
                   cage: 03
-                  unitnumber: 
+                  unitnumber: 11-12
