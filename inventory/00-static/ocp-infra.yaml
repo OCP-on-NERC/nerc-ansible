@@ -12,5 +12,17 @@ all:
                 vendor: lenovo
               hosts:
                 ctl-0.nerc-ocp-infra.rc.fas.harvard.edu:
+                  row: 07
+                  pod: C
+                  cage: 03
+                  unitnumber: 
                 ctl-1.nerc-ocp-infra.rc.fas.harvard.edu:
+                  row: 07
+                  pod: C
+                  cage: 03
+                  unitnumber: 
                 ctl-2.nerc-ocp-infra.rc.fas.harvard.edu:
+                  row: 07
+                  pod: C
+                  cage: 03
+                  unitnumber: 
