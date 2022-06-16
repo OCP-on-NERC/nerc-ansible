@@ -11,9 +11,9 @@ all:
                 node_role: openshift_controller
                 vendor: lenovo
               hosts:
-                ctl-0.nerc-ocp-prod.rc.fas.harvard.edu:
-                ctl-1.nerc-ocp-prod.rc.fas.harvard.edu:
-                ctl-2.nerc-ocp-prod.rc.fas.harvard.edu:
+                ctl-0.nerc-ocp-test.rc.fas.harvard.edu:
+                ctl-1.nerc-ocp-test.rc.fas.harvard.edu:
+                ctl-2.nerc-ocp-test.rc.fas.harvard.edu:
             nerc_ocp_test_workers:
               vars:
                 node_role: openshift_worker
