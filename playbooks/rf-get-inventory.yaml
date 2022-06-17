@@ -140,7 +140,7 @@
         create: true
         path: "{{ hardware_inventory_path }}"
         regexp: "^host,"
-        line: "host,node_role,cluster,manufacturer,model,serialnumber,sku,memory,processor_mode,processor_count,processor_cores,processor_cores_total,chassis_bay,mac_addresses"
+        line: "host,node_role,cluster,manufacturer,model,serialnumber,sku,bios_version,memory,processor_mode,processor_count,processor_cores,processor_cores_total,chassis_bay,mac_addresses"
         insertbefore: BOF
 
     - name: update hardware list (good)
@@ -149,7 +149,7 @@
         path: "{{ hardware_inventory_path }}"
         regexp: "^{{ item }}"
         line: >-
-          {{item}},{{hostvars[item].node_role}},{{hostvars[item].cluster_name}},{{system.Manufacturer}},{{system.Model}},{{system.SerialNumber}},{{system.SKU}},{{system.MemorySummary.TotalSystemMemoryGiB}},{{processor.Model}},{{system.ProcessorSummary.Count|default('n/a')}},{{processor.TotalCores}},{{processor.TotalCores * system.ProcessorSummary.Count}},{{chassis.Location.PartLocation.LocationOrdinalValue|default('')}},"{{interfaces|json_query('[*].json.[MacAddress,MACAddress]')|flatten|join(',')}}"
+          {{item}},{{hostvars[item].node_role}},{{hostvars[item].cluster_name}},{{system.Manufacturer}},{{system.Model}},{{system.SerialNumber}},{{system.SKU}},{{system.BiosVersion}},{{system.MemorySummary.TotalSystemMemoryGiB}},{{processor.Model}},{{system.ProcessorSummary.Count|default('n/a')}},{{processor.TotalCores}},{{processor.TotalCores * system.ProcessorSummary.Count}},{{chassis.Location.PartLocation.LocationOrdinalValue|default('')}},"{{interfaces|json_query('[*].json.[MacAddress,MACAddress]')|flatten|join(',')}}"
       vars:
         interfaces: "{{ hostvars[item].interfaces.results }}"
         chassis: "{{ hostvars[item].chassis.json|default({}) }}"
@@ -165,7 +165,7 @@
         path: "{{ hardware_inventory_path }}"
         regexp: "^{{ item }}"
         line: >-
-          {{item}},{{hostvars[item].node_role}},{{hostvars[item].cluster_name}},failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,"failed"
+          {{item}},{{hostvars[item].node_role}},{{hostvars[item].cluster_name}},failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed
       when: >-
         "system" not in hostvars[item]
       loop: "{{ saved_play_hosts }}"
