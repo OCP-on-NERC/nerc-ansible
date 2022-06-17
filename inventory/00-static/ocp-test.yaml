@@ -12,72 +12,85 @@ all:
                 vendor: lenovo
               hosts:
                 ctl-0.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
                 ctl-1.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
                 ctl-2.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
             nerc_ocp_test_workers:
               vars:
                 node_role: openshift_worker
                 vendor: dell
               hosts:
                 wrk-0.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
                 wrk-1.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
                 wrk-2.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
                 wrk-3.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
                 wrk-4.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
                 wrk-5.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
                 wrk-6.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
                 wrk-7.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
                 wrk-8.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
                 wrk-9.nerc-ocp-test.rc.fas.harvard.edu:
-                  row: 7
-                  pod: B
-                  cage: 19
-                  unitnumber:
+                  location:
+                    row: 7
+                    pod: B
+                    cage: 19
+                    unit:
