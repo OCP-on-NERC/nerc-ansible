@@ -28,7 +28,7 @@
             force_basic_auth: true
           register: system
           until: system is success
-          retries: 5
+          retries: 2
           delay: 5
 
         - name: get manager
@@ -41,7 +41,7 @@
             force_basic_auth: true
           register: manager
           until: manager is success
-          retries: 5
+          retries: 2
           delay: 5
 
         - name: get processors
@@ -54,7 +54,7 @@
             force_basic_auth: true
           register: processors
           until: processors is success
-          retries: 5
+          retries: 2
           delay: 5
 
         # Here, we're assuming all processors are identical, so we only get
@@ -69,7 +69,7 @@
             force_basic_auth: true
           register: processor
           until: processor is success
-          retries: 5
+          retries: 2
           delay: 5
 
         - name: get interfaces
@@ -82,7 +82,7 @@
             force_basic_auth: true
           register: interfaces_list
           until: interfaces_list is success
-          retries: 5
+          retries: 2
           delay: 5
 
         - name: get interface details
@@ -96,24 +96,37 @@
             force_basic_auth: true
           register: interfaces
           until: interfaces is success
-          retries: 5
+          retries: 2
           delay: 5
+
+        # If a host fails one of the earlier tasks, it may not have all the
+        # variables we want when generating our output. Rather than checking
+        # for each variable individually, we can just for look this one to
+        # confirm that the host made it through all the gathering tasks.
+        - name: set flag variable to mark complete hosts
+          set_fact:
+            inventory_complete: true
 
 - hosts: vendor_lenovo
   gather_facts: false
   tasks:
-    - name: get chassis location
-      delegate_to: localhost
-      uri:
-        url: "https://{{ bmc_addr }}/redfish/v1/Chassis/2"
-        user: "{{ bmc_user }}"
-        password: "{{ bmc_password }}"
-        validate_certs: false
-        force_basic_auth: true
-      register: chassis
-      until: chassis is success
-      retries: 5
-      delay: 5
+
+    - rescue:
+        - meta: clear_host_errors
+        - meta: end_host
+      block:
+        - name: get chassis location
+          delegate_to: localhost
+          uri:
+            url: "https://{{ bmc_addr }}/redfish/v1/Chassis/2"
+            user: "{{ bmc_user }}"
+            password: "{{ bmc_password }}"
+            validate_certs: false
+            force_basic_auth: true
+          register: chassis
+          until: chassis is success
+          retries: 2
+          delay: 5
 
 - hosts: localhost
   gather_facts: false
@@ -134,7 +147,7 @@
         create: true
         path: "{{ hardware_inventory_path }}"
         regexp: "^host,"
-        line: "host,node_role,cluster,manufacturer,model,serialnumber,sku,bios_version,bmc_version,memory,processor_mode,processor_count,processor_cores,processor_cores_total,chassis_bay,mac_addresses"
+        line: "host,row,pod,cage,unit,bay,cluster,node_role,manufacturer,model,serialnumber,sku,bios_version,bmc_version,memory,processor_mode,processor_count,processor_cores,processor_cores_total,mac_addresses"
         insertbefore: BOF
 
     - name: update hardware list (good)
@@ -143,15 +156,16 @@
         path: "{{ hardware_inventory_path }}"
         regexp: "^{{ item }}"
         line: >-
-          {{item}},{{hostvars[item].node_role}},{{hostvars[item].cluster_name}},{{system.Manufacturer}},{{system.Model}},{{system.SerialNumber}},{{system.SKU}},{{system.BiosVersion}},{{manager.FirmwareVersion}},{{system.MemorySummary.TotalSystemMemoryGiB}},{{processor.Model}},{{system.ProcessorSummary.Count|default('n/a')}},{{processor.TotalCores}},{{processor.TotalCores * system.ProcessorSummary.Count}},{{chassis.Location.PartLocation.LocationOrdinalValue|default('')}},"{{interfaces|json_query('[*].json.[MacAddress,MACAddress]')|flatten|join(',')}}"
+          {{item}},{{location.row}},{{location.pod}},{{location.cage}},{{location.unit}},{{chassis.Location.PartLocation.LocationOrdinalValue|default('')}},{{hostvars[item].cluster_name}},{{hostvars[item].node_role}},{{system.Manufacturer}},{{system.Model}},{{system.SerialNumber}},{{system.SKU}},{{system.BiosVersion}},{{manager.FirmwareVersion}},{{system.MemorySummary.TotalSystemMemoryGiB}},{{processor.Model}},{{system.ProcessorSummary.Count|default('n/a')}},{{processor.TotalCores}},{{processor.TotalCores * system.ProcessorSummary.Count}},"{{interfaces|json_query('[*].json.[MacAddress,MACAddress]')|flatten|join(',')}}"
       vars:
         interfaces: "{{ hostvars[item].interfaces.results }}"
         chassis: "{{ hostvars[item].chassis.json|default({}) }}"
         system: "{{ hostvars[item].system.json }}"
         manager: "{{ hostvars[item].manager.json }}"
         processor: "{{ hostvars[item].processor.json }}"
+        location: "{{ hostvars[item].location|default({'row':'', 'pod':'', 'cage':'', 'unit':''}) }}"
       when: >-
-        "system" in hostvars[item]
+        "inventory_complete" in hostvars[item]
       loop: "{{ saved_play_hosts }}"
 
     - name: update hardware list (bad)
@@ -160,7 +174,9 @@
         path: "{{ hardware_inventory_path }}"
         regexp: "^{{ item }}"
         line: >-
-          {{item}},{{hostvars[item].node_role}},{{hostvars[item].cluster_name}},failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed
+          {{item}},{{location.row}},{{location.pod}},{{location.cage}},{{location.unit}},failed,{{hostvars[item].cluster_name}},{{hostvars[item].node_role}},failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed
       when: >-
-        "system" not in hostvars[item]
+        "inventory_complete" not in hostvars[item]
       loop: "{{ saved_play_hosts }}"
+      vars:
+        location: "{{ hostvars[item].location|default({'row':'', 'pod':'', 'cage':'', 'unit':''}) }}"
