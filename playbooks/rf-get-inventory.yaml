@@ -18,35 +18,29 @@
         - meta: clear_host_errors
         - meta: end_host
       block:
-        - name: get list of systems
-          delegate_to: localhost
-          uri:
-            url: "https://{{ bmc_addr }}/redfish/v1/Systems"
-            user: "{{ bmc_user }}"
-            password: "{{ bmc_password }}"
-            validate_certs: false
-            force_basic_auth: true
-          register: systems
-          until: systems is success
-          retries: 5
-          delay: 5
-
-        # We assume there's only a single system, so let's make sure
-        # that's true.
-        - assert:
-            that: >-
-              systems.json.Members|length == 1
-
         - name: get system
           delegate_to: localhost
           uri:
-            url: "https://{{ bmc_addr }}{{ systems.json.Members[0]['@odata.id'] }}"
+            url: "https://{{ bmc_addr }}/redfish/v1/Systems/{{ rf_system_id }}"
             user: "{{ bmc_user }}"
             password: "{{ bmc_password }}"
             validate_certs: false
             force_basic_auth: true
           register: system
           until: system is success
+          retries: 5
+          delay: 5
+
+        - name: get manager
+          delegate_to: localhost
+          uri:
+            url: "https://{{ bmc_addr }}/redfish/v1/Managers/{{ rf_manager_id }}"
+            user: "{{ bmc_user }}"
+            password: "{{ bmc_password }}"
+            validate_certs: false
+            force_basic_auth: true
+          register: manager
+          until: manager is success
           retries: 5
           delay: 5
 
@@ -140,7 +134,7 @@
         create: true
         path: "{{ hardware_inventory_path }}"
         regexp: "^host,"
-        line: "host,node_role,cluster,manufacturer,model,serialnumber,sku,bios_version,memory,processor_mode,processor_count,processor_cores,processor_cores_total,chassis_bay,mac_addresses"
+        line: "host,node_role,cluster,manufacturer,model,serialnumber,sku,bios_version,bmc_version,memory,processor_mode,processor_count,processor_cores,processor_cores_total,chassis_bay,mac_addresses"
         insertbefore: BOF
 
     - name: update hardware list (good)
@@ -149,11 +143,12 @@
         path: "{{ hardware_inventory_path }}"
         regexp: "^{{ item }}"
         line: >-
-          {{item}},{{hostvars[item].node_role}},{{hostvars[item].cluster_name}},{{system.Manufacturer}},{{system.Model}},{{system.SerialNumber}},{{system.SKU}},{{system.BiosVersion}},{{system.MemorySummary.TotalSystemMemoryGiB}},{{processor.Model}},{{system.ProcessorSummary.Count|default('n/a')}},{{processor.TotalCores}},{{processor.TotalCores * system.ProcessorSummary.Count}},{{chassis.Location.PartLocation.LocationOrdinalValue|default('')}},"{{interfaces|json_query('[*].json.[MacAddress,MACAddress]')|flatten|join(',')}}"
+          {{item}},{{hostvars[item].node_role}},{{hostvars[item].cluster_name}},{{system.Manufacturer}},{{system.Model}},{{system.SerialNumber}},{{system.SKU}},{{system.BiosVersion}},{{manager.FirmwareVersion}},{{system.MemorySummary.TotalSystemMemoryGiB}},{{processor.Model}},{{system.ProcessorSummary.Count|default('n/a')}},{{processor.TotalCores}},{{processor.TotalCores * system.ProcessorSummary.Count}},{{chassis.Location.PartLocation.LocationOrdinalValue|default('')}},"{{interfaces|json_query('[*].json.[MacAddress,MACAddress]')|flatten|join(',')}}"
       vars:
         interfaces: "{{ hostvars[item].interfaces.results }}"
         chassis: "{{ hostvars[item].chassis.json|default({}) }}"
         system: "{{ hostvars[item].system.json }}"
+        manager: "{{ hostvars[item].manager.json }}"
         processor: "{{ hostvars[item].processor.json }}"
       when: >-
         "system" in hostvars[item]
@@ -165,7 +160,7 @@
         path: "{{ hardware_inventory_path }}"
         regexp: "^{{ item }}"
         line: >-
-          {{item}},{{hostvars[item].node_role}},{{hostvars[item].cluster_name}},failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed
+          {{item}},{{hostvars[item].node_role}},{{hostvars[item].cluster_name}},failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed,failed
       when: >-
         "system" not in hostvars[item]
       loop: "{{ saved_play_hosts }}"
