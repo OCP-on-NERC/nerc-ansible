@@ -110,7 +110,6 @@
 - hosts: vendor_lenovo
   gather_facts: false
   tasks:
-
     - rescue:
         - meta: clear_host_errors
         - meta: end_host
@@ -127,6 +126,39 @@
           until: chassis is success
           retries: 2
           delay: 5
+
+- hosts: vendor_dell
+  gather_facts: false
+  tasks:
+    - rescue:
+        - meta: clear_host_errors
+        - meta: end_host
+      block:
+        - name: get chassis location
+          delegate_to: "{{ bmc_addr }}"
+          raw: >-
+            racadm get system.location
+          register: chassis_raw
+          until: chassis_raw is success
+          retries: 2
+          delay: 5
+
+        - name: extract location information
+          set_fact:
+            chassis:
+              json:
+                Location:
+                  PartLocation:
+                    LocationOrdinalValue: >-
+                      {{
+                        (
+                          (
+                          chassis_raw.stdout_lines |
+                          select('match', '#Chassis.Slot.*') |
+                          first
+                          ) | split('=')
+                        )[1]
+                      }}
 
 - hosts: localhost
   gather_facts: false
