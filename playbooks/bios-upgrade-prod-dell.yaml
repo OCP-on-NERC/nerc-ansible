@@ -1,0 +1,6 @@
+- hosts: nerc_ocp_prod&vendor_dell
+  vars: 
+    - upgrade_categories: "BIOS,iDRAC,ESM"
+    - dell_dsu_repo_install: true
+  roles:
+    - { role: ansible-role-dell-firmware-upgrade }
