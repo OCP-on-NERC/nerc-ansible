@@ -1,10 +1,13 @@
-- hosts: nerc_ocp_prod&vendor_dell
+- hosts: nerc_ocp_prod_workers
   vars: 
     upgrade_categories: "BIOS,iDRAC,ESM"
-    dell_dsu_repo_install: true
+    dell_dsu_repo_install: false
+    dell_dsu_assert: false
+    dell_dsu_manage_multipath_config: false
+    dell_dsu_rollout_gpg_keys: false
     bmc_credentials: "{{ lookup('amazon.aws.aws_secret', 'cluster/nerc/ocp/bmc') | from_json }}"
-    ansible_user: "{{ bmc_credentials.username }}"
-    ansible_ssh_pass: "{{ bmc_credentials.password }}"
+    bmc_user: "{{ bmc_credentials.username }}"
+    bmc_pass: "{{ bmc_credentials.password }}"
   roles:
     - { role: ansible-role-dell-firmware-upgrade }
   tasks:
