@@ -1,0 +1,18 @@
+- name: Get current PluginType value
+  delegate_to: "{{ bmc_addr }}"
+  raw: >-
+    racadm get idrac.virtualconsole.plugintype
+  register: get_result
+  changed_when: false
+  failed_when: >-
+    "ERROR" in get_result.stdout
+
+- name: Enable HTML5 console
+  when: >-
+    "PluginType=2" not in get_result.stdout_lines[1]
+  delegate_to: "{{ bmc_addr }}"
+  raw: >-
+    racadm set idrac.virtualconsole.plugintype 2
+  register: set_result
+  failed_when: >-
+    "ERROR" in set_result.stdout

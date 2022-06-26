@@ -1,0 +1,4 @@
+- hosts: vendor_dell
+  gather_facts: false
+  tasks:
+    - include_tasks: tasks/racadm-enable-html5-console.yaml
