@@ -45,7 +45,7 @@
         idrac_user: "{{ bmc_user }}"
         idrac_password: "{{ bmc_password }}"
         validate_certs: false
-        job_wait: True
+        job_wait: true
         share_name: "http://{{ drm_server }}/{{ step_firmware_dir }}/"
         catalog_file_name: "{{ step_firmware_catalog }}"
         reboot: true
@@ -58,7 +58,7 @@
         idrac_user: "{{ bmc_user }}"
         idrac_password: "{{ bmc_password }}"
         validate_certs: false
-        job_wait: True
+        job_wait: true
         share_name: "http://{{ drm_server }}/{{ target_firmware_dir }}/"
         catalog_file_name: "{{ target_firmware_catalog }}"
         reboot: true
