@@ -1,0 +1,5 @@
+# Dell openmanage SDK
+omsdk
+
+# dnspython for ip lookups
+dnspython
