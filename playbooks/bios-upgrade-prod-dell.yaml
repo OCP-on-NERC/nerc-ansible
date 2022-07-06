@@ -21,7 +21,7 @@
         idrac_ip: "{{ bmc_ip }}"
         idrac_user: "{{ bmc_user }}"
         idrac_password: "{{ bmc_password }}"
-        validate_certs: False
+        validate_certs: false
       register: current_firmware
     
     - name: Display current bios major firmware
@@ -44,7 +44,7 @@
         idrac_ip: "{{ bmc_ip }}"
         idrac_user: "{{ bmc_user }}"
         idrac_password: "{{ bmc_password }}"
-        validate_certs: False
+        validate_certs: false
         job_wait: True
         share_name: "http://{{ drm_server }}/{{ step_firmware_dir }}/"
         catalog_file_name: "{{ step_firmware_catalog }}"
@@ -57,7 +57,7 @@
         idrac_ip: "{{ bmc_ip }}"
         idrac_user: "{{ bmc_user }}"
         idrac_password: "{{ bmc_password }}"
-        validate_certs: False
+        validate_certs: false
         job_wait: True
         share_name: "http://{{ drm_server }}/{{ target_firmware_dir }}/"
         catalog_file_name: "{{ target_firmware_catalog }}"
