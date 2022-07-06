@@ -1,20 +1,74 @@
 - hosts: nerc_ocp_prod_workers
-  vars: 
-    upgrade_categories: "BIOS,iDRAC,ESM"
-    dell_dsu_repo_install: false
-    dell_dsu_assert: false
-    dell_dsu_manage_multipath_config: false
-    dell_dsu_rollout_gpg_keys: false
-    bmc_credentials: "{{ lookup('amazon.aws.aws_secret', 'cluster/nerc/ocp/bmc') | from_json }}"
-    bmc_user: "{{ bmc_credentials.username }}"
-    bmc_pass: "{{ bmc_credentials.password }}"
-  roles:
-    - { role: ansible-role-dell-firmware-upgrade }
+  gather_facts: false
+  vars:
+    step_firmware: 2.70.70.70
+    target_firmware: 2.83.83.83
+    target_bios: 2.13.0
+    drm_server: 10.255.0.25
+    step_firmware_dir: fc430-step
+    target_firmware_dir: fc430
+    step_firmware_catalog: Catalog.xml
+    target_firmware_catalog: fc430_1.10_Catalog.xml
+
   tasks:
+    - name: Get BMC IP
+      set_fact:
+        bmc_ip: "{{ lookup ('dig', '{{ bmc_addr }}') }}"
+
+    - name: Get firmware versions
+      delegate_to: localhost
+      dellemc.openmanage.idrac_firmware_info:
+        idrac_ip: "{{ bmc_ip }}"
+        idrac_user: "{{ bmc_user }}"
+        idrac_password: "{{ bmc_password }}"
+        validate_certs: False
+      register: current_firmware
+    
+    - name: Display current bios major firmware
+      set_fact:
+        bios_ver: "{{ item }}"
+      loop: "{{ current_firmware | json_query(firmware_query) }}"
+      vars: 
+        firmware_query: "firmware_info.Firmware[?ComponentType=='BIOS'].VersionString"
+    
+    - name: Display current bios major firmware
+      set_fact:
+        idrac_ver: "{{ item }}"
+      loop: "{{ current_firmware | json_query(firmware_query) }}"
+      vars: 
+        firmware_query: "firmware_info.Firmware[?ElementName=='Integrated Dell Remote Access Controller'].VersionString"
+
+    - name: Update to step firmware if required
+      delegate_to: localhost
+      dellemc.openmanage.idrac_firmware:
+        idrac_ip: "{{ bmc_ip }}"
+        idrac_user: "{{ bmc_user }}"
+        idrac_password: "{{ bmc_password }}"
+        validate_certs: False
+        job_wait: True
+        share_name: "http://{{ drm_server }}/{{ step_firmware_dir }}/"
+        catalog_file_name: "{{ step_firmware_catalog }}"
+        reboot: true
+      when: idrac_ver < step_firmware
+
+    - name: Update to target firmware if required
+      delegate_to: localhost
+      dellemc.openmanage.idrac_firmware:
+        idrac_ip: "{{ bmc_ip }}"
+        idrac_user: "{{ bmc_user }}"
+        idrac_password: "{{ bmc_password }}"
+        validate_certs: False
+        job_wait: True
+        share_name: "http://{{ drm_server }}/{{ target_firmware_dir }}/"
+        catalog_file_name: "{{ target_firmware_catalog }}"
+        reboot: true
+      when: idrac_ver < target_firmware
+
     - name: Disable host header check
-      delegate_to: "{{ bmc_addr }}"
+      delegate_to: localhost
+      become: true
       raw: >-
-        racadm set idrac.webserver.HostHeaderCheck 0
+        /opt/dell/srvadmin/sbin/racadm -r {{ bmc_ip }} -u {{ bmc_user }} -p {{ bmc_password }} set idrac.webserver.HostHeaderCheck 0
       register: result
       failed_when: >-
         "Object value modified successfully" not in result.stdout
