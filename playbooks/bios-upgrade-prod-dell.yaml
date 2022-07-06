@@ -14,7 +14,7 @@
     - name: Get BMC IP
       set_fact:
         bmc_ip: "{{ lookup ('dig', '{{ bmc_addr }}') }}"
-  
+ 
     - name: Get firmware versions
       delegate_to: localhost
       dellemc.openmanage.idrac_firmware_info:
