@@ -14,7 +14,7 @@
     - name: Get BMC IP
       set_fact:
         bmc_ip: "{{ lookup ('dig', '{{ bmc_addr }}') }}"
-
+  
     - name: Get firmware versions
       delegate_to: localhost
       dellemc.openmanage.idrac_firmware_info:
@@ -23,19 +23,19 @@
         idrac_password: "{{ bmc_password }}"
         validate_certs: false
       register: current_firmware
-    
+
     - name: Display current bios major firmware
       set_fact:
         bios_ver: "{{ item }}"
       loop: "{{ current_firmware | json_query(firmware_query) }}"
-      vars: 
+      vars:
         firmware_query: "firmware_info.Firmware[?ComponentType=='BIOS'].VersionString"
-    
+
     - name: Display current bios major firmware
       set_fact:
         idrac_ver: "{{ item }}"
       loop: "{{ current_firmware | json_query(firmware_query) }}"
-      vars: 
+      vars:
         firmware_query: "firmware_info.Firmware[?ElementName=='Integrated Dell Remote Access Controller'].VersionString"
 
     - name: Update to step firmware if required
