@@ -1,13 +1,8 @@
 - hosts: nerc_ocp_prod_workers
   gather_facts: false
   vars:
-<<<<<<< HEAD
     step_firmware: "2.70.70.70"
     target_firmware: "2.83.83.83"
-=======
-    step_firmware: 2.70.70.70
-    target_firmware: 2.83.83.83
->>>>>>> 8e3e95b356adee1666bedcd08a03f07ecb22d4d5
     target_bios: 2.13.0
     drm_server: 10.255.0.25
     step_firmware_dir: fc430-step
@@ -29,18 +24,7 @@
         validate_certs: false
       register: current_firmware
 
-<<<<<<< HEAD
     - name: Extract current iDRAC major firmware
-=======
-    - name: Display current bios major firmware
-      set_fact:
-        bios_ver: "{{ item }}"
-      loop: "{{ current_firmware | json_query(firmware_query) }}"
-      vars:
-        firmware_query: "firmware_info.Firmware[?ComponentType=='BIOS'].VersionString"
-
-    - name: Display current bios major firmware
->>>>>>> 8e3e95b356adee1666bedcd08a03f07ecb22d4d5
       set_fact:
         idrac_ver: "{{ item }}"
       loop: "{{ current_firmware | json_query(firmware_query) }}"
@@ -58,11 +42,7 @@
         share_name: "http://{{ drm_server }}/{{ step_firmware_dir }}/"
         catalog_file_name: "{{ step_firmware_catalog }}"
         reboot: true
-<<<<<<< HEAD
       when: idrac_ver is version(step_firmware,  '<' )
-=======
-      when: idrac_ver < step_firmware
->>>>>>> 8e3e95b356adee1666bedcd08a03f07ecb22d4d5
 
     - name: Update to target firmware if required
       delegate_to: localhost
@@ -75,11 +55,7 @@
         share_name: "http://{{ drm_server }}/{{ target_firmware_dir }}/"
         catalog_file_name: "{{ target_firmware_catalog }}"
         reboot: true
-<<<<<<< HEAD
       when: idrac_ver is version( target_firmware,  '<' )
-=======
-      when: idrac_ver < target_firmware
->>>>>>> 8e3e95b356adee1666bedcd08a03f07ecb22d4d5
 
     - name: Disable host header check
       delegate_to: localhost
