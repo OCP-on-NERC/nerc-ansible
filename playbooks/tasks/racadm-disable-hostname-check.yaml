@@ -1,0 +1,18 @@
+- name: Get current HostHeaderCheck value
+  delegate_to: "{{ bmc_addr }}"
+  raw: >-
+    racadm get idrac.webserver.hostheadercheck
+  register: get_result
+  changed_when: false
+  failed_when: >-
+    "ERROR" in get_result.stdout
+
+- name: Disable HostHeaderCheck
+  when: >-
+    "HostHeaderCheck=Enabled" in get_result.stdout_lines[1]
+  delegate_to: "{{ bmc_addr }}"
+  raw: >-
+    racadm set idrac.webserver.hostheadercheck 0
+  register: set_result
+  failed_when: >-
+    "ERROR" in set_result.stdout

@@ -1,10 +1,4 @@
 - hosts: vendor_dell
   gather_facts: false
   tasks:
-    - name: Enable IPMILan
-      delegate_to: "{{ bmc_addr }}"
-      raw: >-
-        racadm set iDRAC.IPMILan.Enable Enabled
-      register: result
-      failed_when: >-
-        "Object value modified successfully" not in result.stdout
+    - include_tasks: tasks/racadm-enable-ipmilan.yaml
