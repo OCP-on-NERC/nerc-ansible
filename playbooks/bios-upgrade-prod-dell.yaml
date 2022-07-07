@@ -1,0 +1,67 @@
+- hosts: nerc_ocp_prod_workers
+  gather_facts: false
+  vars:
+    step_firmware: "2.70.70.70"
+    target_firmware: "2.83.83.83"
+    target_bios: 2.13.0
+    drm_server: 10.255.0.25
+    step_firmware_dir: fc430-step
+    target_firmware_dir: fc430
+    step_firmware_catalog: Catalog.xml
+    target_firmware_catalog: fc430_1.10_Catalog.xml
+
+  tasks:
+    - name: Get BMC IP
+      set_fact:
+        bmc_ip: "{{ lookup ('dig', '{{ bmc_addr }}') }}"
+
+    - name: Get firmware versions
+      delegate_to: localhost
+      dellemc.openmanage.idrac_firmware_info:
+        idrac_ip: "{{ bmc_ip }}"
+        idrac_user: "{{ bmc_user }}"
+        idrac_password: "{{ bmc_password }}"
+        validate_certs: false
+      register: current_firmware
+
+    - name: Extract current iDRAC major firmware
+      set_fact:
+        idrac_ver: "{{ item }}"
+      loop: "{{ current_firmware | json_query(firmware_query) }}"
+      vars:
+        firmware_query: "firmware_info.Firmware[?ElementName=='Integrated Dell Remote Access Controller'].VersionString"
+
+    - name: Update to step firmware if required
+      delegate_to: localhost
+      dellemc.openmanage.idrac_firmware:
+        idrac_ip: "{{ bmc_ip }}"
+        idrac_user: "{{ bmc_user }}"
+        idrac_password: "{{ bmc_password }}"
+        validate_certs: false
+        job_wait: true
+        share_name: "http://{{ drm_server }}/{{ step_firmware_dir }}/"
+        catalog_file_name: "{{ step_firmware_catalog }}"
+        reboot: true
+      when: idrac_ver is version(step_firmware,  '<' )
+
+    - name: Update to target firmware if required
+      delegate_to: localhost
+      dellemc.openmanage.idrac_firmware:
+        idrac_ip: "{{ bmc_ip }}"
+        idrac_user: "{{ bmc_user }}"
+        idrac_password: "{{ bmc_password }}"
+        validate_certs: false
+        job_wait: true
+        share_name: "http://{{ drm_server }}/{{ target_firmware_dir }}/"
+        catalog_file_name: "{{ target_firmware_catalog }}"
+        reboot: true
+      when: idrac_ver is version( target_firmware,  '<' )
+
+    - name: Disable host header check
+      delegate_to: localhost
+      become: true
+      raw: >-
+        /opt/dell/srvadmin/sbin/racadm -r {{ bmc_ip }} -u {{ bmc_user }} -p {{ bmc_password }} set idrac.webserver.HostHeaderCheck 0
+      register: result
+      failed_when: >-
+        "Object value modified successfully" not in result.stdout
