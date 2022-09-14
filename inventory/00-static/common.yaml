@@ -5,6 +5,8 @@ all:
   children:
     nerc_ocp:
       vars:
+        ansible_user: core
+        ansible_python_interpreter: /usr/libexec/platform-python
         bmc_addr: "{{ (['{}-obm'.format(hostname_parts[0])] + hostname_parts[1:])|join('.') }}"
         bmc_user: "{{ bmc_credentials.username }}"
         bmc_password: "{{ bmc_credentials.password }}"
