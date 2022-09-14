@@ -3,7 +3,7 @@
   vars:
     common_names:
       - api.nerc-ocp-prod.rc.fas.harvard.edu
-      - apps.nerc-ocp-prod.rc.fas.harvard.edu
+      - '*.apps.shift.nerc.mghpcc.org'
     country_name: US
     organization_name: NERC
     state_or_province_name: MA
