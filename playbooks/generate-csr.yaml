@@ -1,0 +1,34 @@
+- hosts: nerc-bootstrap
+  gather_facts: false
+  vars:
+    common_names:
+      - api.nerc-ocp-prod.rc.fas.harvard.edu
+      - '*.apps.shift.nerc.mghpcc.org'
+    country_name: US
+    organization_name: NERC
+    state_or_province_name: MA
+    dirs:
+      - private
+      - csr
+
+  tasks:
+    - name: create directories if missing
+      file:
+        path: "/etc/ssl/{{ item }}"
+        state: directory
+      loop: "{{ dirs }}"
+
+    - name: generate private keys
+      openssl_privatekey:
+        path: "/etc/ssl/private/{{ item }}.pem"
+      loop: "{{ common_names }}"
+
+    - name: generate csr
+      openssl_csr:
+        path: "/etc/ssl/csr/{{ item }}.csr"
+        privatekey_path: "/etc/ssl/private/{{ item }}.pem"
+        common_name: "{{ item }}"
+        country_name: "{{ country_name }}"
+        organization_name: "{{ organization_name }}"
+        state_or_province_name: "{{ state_or_province_name }}"
+      loop: "{{ common_names }}"
